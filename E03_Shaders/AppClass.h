@@ -26,7 +26,6 @@ class AppClass
 	std::string m_sWindowName = ""; //window name
 	sf::Window* m_pWindow = nullptr; //SFML window
 	GLuint m_uShaderProgramID = 0; //Shader program
-	GLboolean Compliment;	// turns the complimentary things on
 	GLuint m_uVAO = 0; //Vertex Array Object
 	GLuint m_uVBO = 0; //Vertex Buffer Object
 	
