@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DEMOS", "DEMOS", "{75A6D539-8458-45DF-BE47-1376FB54C16E}"
 EndProject
@@ -110,6 +110,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A05 - Octree", "A05 - Octree\A05 - Octree.vcxproj", "{44D2C07B-798D-461B-9019-DFB240593888}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E06.5 - LERP", "E06.5 - LERP\E06.5 - LERP.vcxproj", "{822E40D2-80A1-46EB-AD93-EC28C4F145ED}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C05_Shaders", "E03_Shaders\E03_Shader.vcxproj", "{842B7266-8ADD-4817-83AC-22CEFE16BC74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -315,6 +317,10 @@ Global
 		{822E40D2-80A1-46EB-AD93-EC28C4F145ED}.Debug|x86.Build.0 = Debug|Win32
 		{822E40D2-80A1-46EB-AD93-EC28C4F145ED}.Release|x86.ActiveCfg = Release|Win32
 		{822E40D2-80A1-46EB-AD93-EC28C4F145ED}.Release|x86.Build.0 = Release|Win32
+		{842B7266-8ADD-4817-83AC-22CEFE16BC74}.Debug|x86.ActiveCfg = Debug|Win32
+		{842B7266-8ADD-4817-83AC-22CEFE16BC74}.Debug|x86.Build.0 = Debug|Win32
+		{842B7266-8ADD-4817-83AC-22CEFE16BC74}.Release|x86.ActiveCfg = Release|Win32
+		{842B7266-8ADD-4817-83AC-22CEFE16BC74}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -369,6 +375,7 @@ Global
 		{413BF597-600A-43A8-8A82-CB60E2DCDD95} = {EE0E027C-366F-4685-94D5-0EA5F6870B1B}
 		{44D2C07B-798D-461B-9019-DFB240593888} = {EE0E027C-366F-4685-94D5-0EA5F6870B1B}
 		{822E40D2-80A1-46EB-AD93-EC28C4F145ED} = {78C06654-E155-40A8-97F7-7BA1E50977C5}
+		{842B7266-8ADD-4817-83AC-22CEFE16BC74} = {78C06654-E155-40A8-97F7-7BA1E50977C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A36545A6-DAAA-4856-BDB7-57C29F88BC6B}

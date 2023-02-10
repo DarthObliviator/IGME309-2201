@@ -17,6 +17,40 @@ void MyMesh::GenerateCircle(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 		then call the AddTri function to generate a_nSubdivision number of faces
 	*/
 
+	float delta = 2*PI / static_cast<float>(a_nSubdivisions);			// just a fancy cast
+	std::vector<vector3> pointList;
+
+	for (int i = 0; i < a_nSubdivisions; i++) {				// use polar coordinates to assign coordinates to different points
+															// divide 2*PI or 360 by Subdivisions and calculate the positions like that for a circle
+		vector3 v1 = vector3(glm::cos(delta * i), glm::sin(delta * i), 0.0f);
+		pointList.push_back(v1);
+				
+	}
+
+	for (int i = 0; i < a_nSubdivisions; i++) {
+		AddTri(vector3(0.0, 0.0, 0.0), pointList[i], pointList[(i + 1) % a_nSubdivisions]);
+	}
+
+	for (int i = 0; i < a_nSubdivisions; i++) {
+		AddTri(ZERO_V3, pointList[(i+1)% a_nSubdivisions], pointList[i]);
+	}
+
+
+	// the first argument's c value at tringle moves the height up
+	// The triangle assignments are vectors it's connecting to
+
+
+
+	//AddTri(vector3(0.0f, 0.0f, 0.0f), vector3(1, 0, 0), vector3(0, 1, 0));
+	//AddTri(vector3(0.0f, 0.0f, 0.0f), vector3(0, 1, 0), vector3(-1, 0, 0));
+	//AddTri(vector3(0.0f, 0.0f, 0.0f), vector3(-1, 0, 0), vector3(0, -1, 0));
+	//AddTri(vector3(0.0f, 0.0f, 0.0f), vector3(0, -1, 0), vector3(1, 0, 0));
+//
+//AddTri(vector3(0, 0, 0), vector3(1, 0, 0), vector3(0.75, 0.75f, 0));
+//AddTri(vector3(0, 0, 0), vector3(0.75f, 0.75f, 0), vector3(0, 1, 0));
+//AddTri(vector3(0, 0, 0), vector3(0, 1, 0), vector3(-0.75f, 0.75f, 0));
+//AddTri(vector3(0, 0, 0), vector3(-0.75f, 0.75f, 0), vector3(-1, 0, 0));
+//
 	// Adding information about color
 	CompleteMesh(a_v3Color);
 	CompileOpenGL3X();

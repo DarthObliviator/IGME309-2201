@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E60B5B2D-19E8-4FD3-BFF7-CB908C5A651A}</ProjectGuid>
+    <ProjectGuid>{842B7266-8ADD-4817-83AC-22CEFE16BC74}</ProjectGuid>
     <RootNamespace>C05_Shaders</RootNamespace>
     <ProjectName>C05_Shaders</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
