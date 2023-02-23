@@ -261,9 +261,6 @@ void MyMesh::GenerateCuboid(vector3 a_v3Dimensions, vector3 a_v3Color)
 }
 void MyMesh::GenerateCircle(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color)
 {
-	Release();
-	Init();
-
 	if (a_fRadius < 0.01f)
 		a_fRadius = 0.01f;
 
@@ -272,7 +269,10 @@ void MyMesh::GenerateCircle(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	if (a_nSubdivisions > 360)
 		a_nSubdivisions = 360;
 
-	std::vector<vector3 > vertex;
+	Release();
+	Init();
+
+	std::vector<vector3> vertex;
 	GLfloat theta = 0;
 	GLfloat delta = static_cast<GLfloat>(2 * PI / a_nSubdivisions);
 	for (int i = 0; i < a_nSubdivisions; i++)

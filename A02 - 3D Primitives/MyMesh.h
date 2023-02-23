@@ -143,6 +143,8 @@ public:
 	OUTPUT: ---
 	*/
 	void AddQuad(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_vTopLeft, vector3 a_vTopRight);
+	/*USAGE: Generates a 2D Circle of a radius*/
+	void GenerateCircle(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color);
 #pragma region 3D Primitives
 	/*
 	USAGE: Generates a cube
