@@ -528,14 +528,55 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	std::vector<vector3> vertex;
 	GLfloat theta = 0;
 	GLfloat delta = static_cast<GLfloat>(2 * PI / static_cast<float>(a_nSubdivisions));
-	for (int i = 0; i < a_nSubdivisions; i++)
+	for (int i = 0; i < a_nSubdivisions; i++)			// creating a template circle, right?
 	{
 		vector3 temp = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0);
 		theta += delta;
 		vertex.push_back(temp);
 	}
 
-	std::vector<vector3> vertexTemp1;
+	// create two basic vertices
+	vector3 startVert = vector3(0.0f, 0.0f, 0.0f);
+	vector3 endVert = vector3(0.0f, 0.0f, a_fRadius);
+	float subdivLength = a_fRadius / (a_nSubdivisions + 1);
+
+	std::vector<vector3> sphereBodyVertArr;							// contains the vertices needed to create sphere body
+	for (int s = 1; s < a_nSubdivisions; s++) {			// create enough "circles" or coils of vertices
+														// we would also transform these "circles" so that they fit into the radius
+
+		matrix4 m4Transform;
+		float fTheta = (2 * PI / static_cast<float>(a_nSubdivisions) * static_cast<float>(s));
+		float distY = subdivLength * s;								// determines how far away from 0 the circle will be
+
+		for (int i = 0; i < a_nSubdivisions; i++) {					// add the vertices
+
+			m4Transform = glm::translate(IDENTITY_M4, vector3(0, 0, distY));	// translate the vertex by the subdivision length
+																				// we would also transform the vertex so that it 
+																				//fits into the radius, giving the resulting 
+																				// cylinder a circular shape; the code does not run, so no point
+			
+			sphereBodyVertArr.push_back(m4Transform * vector4(vertex[i], 1.0f));			// add all of the vertices in the circle
+		}
+	}
+
+	// connect the edge vertices to the body
+	for (int i = 0; i < a_nSubdivisions; i++) {
+		AddTri(sphereBodyVertArr[(i+1)%a_nSubdivisions], sphereBodyVertArr[i], ZERO_V3);
+		AddTri(vector3(0, 0, a_fRadius), sphereBodyVertArr[(sphereBodyVertArr.size() - i-1 )], sphereBodyVertArr[(sphereBodyVertArr.size() - i) % sphereBodyVertArr.size()]);
+	}
+
+	for (int i = 0; i < sphereBodyVertArr.size(); i++) {
+		int nextRowIndex = (sphereBodyVertArr.size() - i) % sphereBodyVertArr.size();		// we're connecting the next row vertices to this one
+		AddQuad(sphereBodyVertArr[i], sphereBodyVertArr[(i + 1) % sphereBodyVertArr.size()],
+			sphereBodyVertArr[nextRowIndex % sphereBodyVertArr.size()], sphereBodyVertArr[(nextRowIndex + 1) % sphereBodyVertArr.size()]);
+	}
+
+
+
+
+	// Old code that does not work
+
+/*	std::vector<vector3> vertexTemp1;
 
 	for (uint s = 0; s < a_nSubdivisions; s++) {
 		std::vector<vector3> vertexTemp2 = vertex;
@@ -548,21 +589,19 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 		}
 
 
-		for (int i = 0; i < a_nSubdivisions; i++) {
-			AddTri(ZERO_V3, vertexTemp2[i], vertexTemp2[(i + 1) % a_nSubdivisions]);
-			if (s >= 1)
-				AddQuad(vertexTemp1[i % a_nSubdivisions], vertexTemp1[(i + 1) % a_nSubdivisions], vertexTemp2[i % a_nSubdivisions], vertexTemp2[(i + 1) % a_nSubdivisions]);
+		for (int i = 0; i < a_nSubdivisions+1; i++) {
+			//AddTri(ZERO_V3, vertexTemp2[i], vertexTemp2[(i + 1) % a_nSubdivisions]);
+			if (s >= 1)					// wait once so that we get a second array to use
+				AddQuad(vertexTemp2[i % a_nSubdivisions], vertexTemp2[(i + 1) % a_nSubdivisions], vertexTemp1[i % a_nSubdivisions], vertexTemp1[(i + 1) % a_nSubdivisions]);
 		}
 		// I connected the points from the previous iteration to the next interation?
 		// Why don't they show up?
 		// The circles should connect, right?
 
 
-
 		vertexTemp1 = vertexTemp2;
-
-		// Adding information about color
-		CompleteMesh(a_v3Color);
-		CompileOpenGL3X();
-	}
+	}*/
+	// Adding information about color
+	CompleteMesh(a_v3Color);
+	CompileOpenGL3X();
 }
