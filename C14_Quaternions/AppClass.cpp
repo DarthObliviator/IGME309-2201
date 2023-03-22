@@ -22,6 +22,9 @@ void Application::Update(void)
 	//Is the first person camera active?
 	CameraRotation();
 
+	//Send model to render list
+	m_pModel->AddToRenderList();
+
 	//Get a timer
 	static uint uClock = m_pSystem->GenClock();
 	float fTimer = m_pSystem->GetTimeSinceStart(uClock);

@@ -6,6 +6,12 @@ void Application::InitVariables(void)
 
 	////Alberto needed this at this position for software recording.
 	//m_pWindow->setPosition(sf::Vector2i(710, 0));
+
+	vector3 v3Position(0,0,10);
+	vector3 v3Target = ZERO_V3;
+	vector3 v3Upward = AXIS_Y;
+	
+	m_pCameraMngr->SetPositionTargetAndUpward(v3Position, v3Target, v3Upward);
 }
 void Application::Update(void)
 {

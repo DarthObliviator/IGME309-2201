@@ -14,6 +14,10 @@ Date: 2017/05
 
 class Application
 {
+	std::vector<MyMesh*> pMeshArr;
+	std::vector<std::vector<MyMesh*>> pMeshArr2;
+	std::vector<matrix4> m4TranslateArr;
+
 	MyMesh* m_pMesh = nullptr;
 	MyMesh* m_pMesh1 = nullptr;
 
